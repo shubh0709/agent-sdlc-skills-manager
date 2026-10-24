@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "id": "addy-osmani",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+      "license": "MIT",
+      "license_file": "third_party/LICENSE.addy-osmani"
+    },
+    {
+      "id": "pstack",
+      "repository": "https://github.com/cursor/plugins/tree/main/pstack",
+      "commit": "9580c23696ac8d7abed0c166f2f9918800afb819",
+      "license": "MIT",
+      "license_file": "third_party/LICENSE.pstack"
+    },
+    {
+      "id": "matt-pocock",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "license": "MIT",
+      "license_file": "third_party/LICENSE.matt-pocock"
+    }
+  ]
+}
+

@@ -1,0 +1,32 @@
+{
+  "stage": "test",
+  "skills": [
+    "addy-osmani/browser-testing-with-devtools",
+    "addy-osmani/ci-cd-and-automation",
+    "addy-osmani/constraint-driven-development",
+    "addy-osmani/debugging-and-error-recovery",
+    "addy-osmani/doubt-driven-development",
+    "addy-osmani/frontend-ui-engineering",
+    "addy-osmani/idea-refine",
+    "addy-osmani/interview-me",
+    "addy-osmani/observability-and-instrumentation",
+    "addy-osmani/performance-optimization",
+    "addy-osmani/spec-driven-development",
+    "addy-osmani/test-driven-development",
+    "local/ralph-loop",
+    "local/sdlc-orchestrator",
+    "matt-pocock/codebase-design",
+    "matt-pocock/diagnosing-bugs",
+    "matt-pocock/grilling",
+    "matt-pocock/migrate-to-shoehorn",
+    "matt-pocock/setup-pre-commit",
+    "matt-pocock/tdd",
+    "pstack/correct",
+    "pstack/create-formal-verification-skill",
+    "pstack/interrogate",
+    "pstack/principle-attack-the-premise",
+    "pstack/principle-fix-root-causes",
+    "pstack/principle-test-behavior-not-implementation",
+    "pstack/tdd"
+  ]
+}

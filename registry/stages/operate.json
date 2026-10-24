@@ -1,0 +1,16 @@
+{
+  "stage": "operate",
+  "skills": [
+    "addy-osmani/code-simplification",
+    "addy-osmani/debugging-and-error-recovery",
+    "addy-osmani/deprecation-and-migration",
+    "addy-osmani/doubt-driven-development",
+    "addy-osmani/frontend-ui-engineering",
+    "addy-osmani/observability-and-instrumentation",
+    "addy-osmani/shipping-and-launch",
+    "pstack/maintain-formal-verification-skill",
+    "pstack/maintain-verification-skill",
+    "pstack/recall",
+    "pstack/why"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "stage": "design",
+  "skills": [
+    "addy-osmani/api-and-interface-design",
+    "addy-osmani/deprecation-and-migration",
+    "addy-osmani/documentation-and-adrs",
+    "addy-osmani/frontend-ui-engineering",
+    "matt-pocock/codebase-design",
+    "matt-pocock/domain-modeling",
+    "matt-pocock/grill-me",
+    "matt-pocock/grill-with-docs",
+    "matt-pocock/improve-codebase-architecture",
+    "matt-pocock/prototype",
+    "matt-pocock/research",
+    "matt-pocock/setup-matt-pocock-skills",
+    "pstack/architect",
+    "pstack/correct",
+    "pstack/figure-it-out",
+    "pstack/how",
+    "pstack/principle-boundary-discipline",
+    "pstack/principle-exhaust-the-design-space",
+    "pstack/principle-make-operations-idempotent",
+    "pstack/principle-migrate-callers-then-delete-legacy-apis",
+    "pstack/principle-minimize-reader-load",
+    "pstack/principle-model-the-domain",
+    "pstack/principle-outcome-oriented-execution",
+    "pstack/principle-redesign-from-first-principles",
+    "pstack/principle-type-system-discipline",
+    "pstack/why"
+  ]
+}

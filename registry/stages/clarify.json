@@ -1,0 +1,23 @@
+{
+  "stage": "clarify",
+  "skills": [
+    "addy-osmani/constraint-driven-development",
+    "addy-osmani/frontend-ui-engineering",
+    "addy-osmani/idea-refine",
+    "addy-osmani/interview-me",
+    "addy-osmani/performance-optimization",
+    "addy-osmani/planning-and-task-breakdown",
+    "addy-osmani/spec-driven-development",
+    "local/sdlc-orchestrator",
+    "matt-pocock/domain-modeling",
+    "matt-pocock/grill-me",
+    "matt-pocock/grill-with-docs",
+    "matt-pocock/grilling",
+    "matt-pocock/improve-codebase-architecture",
+    "matt-pocock/loop-me",
+    "matt-pocock/to-questionnaire",
+    "matt-pocock/to-spec",
+    "matt-pocock/triage",
+    "pstack/principle-attack-the-premise"
+  ]
+}

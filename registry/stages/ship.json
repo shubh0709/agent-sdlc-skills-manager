@@ -1,0 +1,16 @@
+{
+  "stage": "ship",
+  "skills": [
+    "addy-osmani/ci-cd-and-automation",
+    "addy-osmani/documentation-and-adrs",
+    "addy-osmani/git-workflow-and-versioning",
+    "addy-osmani/observability-and-instrumentation",
+    "addy-osmani/shipping-and-launch",
+    "local/sdlc-orchestrator",
+    "matt-pocock/git-guardrails-claude-code",
+    "pstack/blast-radius",
+    "pstack/how",
+    "pstack/principle-experience-first",
+    "pstack/principle-fix-root-causes"
+  ]
+}

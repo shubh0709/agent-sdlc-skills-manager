@@ -1,0 +1,24 @@
+{
+  "description": "The 17 curated defaults plus the SDLC orchestrator.",
+  "skills": [
+    "local/sdlc-orchestrator",
+    "matt-pocock/grilling",
+    "matt-pocock/grill-with-docs",
+    "matt-pocock/domain-modeling",
+    "matt-pocock/to-spec",
+    "matt-pocock/to-tickets",
+    "matt-pocock/codebase-design",
+    "matt-pocock/tdd",
+    "matt-pocock/diagnosing-bugs",
+    "addy-osmani/context-engineering",
+    "addy-osmani/source-driven-development",
+    "addy-osmani/incremental-implementation",
+    "addy-osmani/browser-testing-with-devtools",
+    "addy-osmani/code-review-and-quality",
+    "pstack/create-verification-skill",
+    "pstack/blast-radius",
+    "pstack/principle-prove-it-works",
+    "pstack/typescript-best-practices"
+  ]
+}
+

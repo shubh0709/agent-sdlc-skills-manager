@@ -1,0 +1,25 @@
+{
+  "stage": "specify",
+  "skills": [
+    "addy-osmani/browser-testing-with-devtools",
+    "addy-osmani/documentation-and-adrs",
+    "addy-osmani/frontend-ui-engineering",
+    "addy-osmani/interview-me",
+    "addy-osmani/performance-optimization",
+    "addy-osmani/planning-and-task-breakdown",
+    "addy-osmani/source-driven-development",
+    "addy-osmani/spec-driven-development",
+    "local/ralph-loop",
+    "local/sdlc-orchestrator",
+    "matt-pocock/code-review",
+    "matt-pocock/domain-modeling",
+    "matt-pocock/grill-with-docs",
+    "matt-pocock/implement",
+    "matt-pocock/implement-spec",
+    "matt-pocock/loop-me",
+    "matt-pocock/retro",
+    "matt-pocock/to-spec",
+    "matt-pocock/to-tickets",
+    "pstack/principle-prove-it-works"
+  ]
+}

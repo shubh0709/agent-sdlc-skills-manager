@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ralph Loop"
+  short_description: "Run bounded autonomous ticket-by-ticket delivery loops"
+  default_prompt: "Run a bounded Ralph loop over the prepared tickets, stopping at safety gates."

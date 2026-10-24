@@ -1,0 +1,28 @@
+{
+  "stage": "review",
+  "skills": [
+    "addy-osmani/ci-cd-and-automation",
+    "addy-osmani/code-review-and-quality",
+    "addy-osmani/code-simplification",
+    "addy-osmani/constraint-driven-development",
+    "addy-osmani/context-engineering",
+    "addy-osmani/doubt-driven-development",
+    "addy-osmani/frontend-ui-engineering",
+    "addy-osmani/git-workflow-and-versioning",
+    "addy-osmani/security-and-hardening",
+    "local/ralph-loop",
+    "local/sdlc-orchestrator",
+    "matt-pocock/code-review",
+    "pstack/blast-radius",
+    "pstack/figure-it-out",
+    "pstack/interrogate",
+    "pstack/maintain-verification-skill",
+    "pstack/principle-build-the-lever",
+    "pstack/principle-minimize-reader-load",
+    "pstack/principle-sequence-verifiable-units",
+    "pstack/principle-type-system-discipline",
+    "pstack/reflect",
+    "pstack/show-me-your-work",
+    "pstack/technical-writing"
+  ]
+}

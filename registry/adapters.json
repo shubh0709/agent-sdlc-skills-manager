@@ -1,0 +1,8 @@
+{
+  "agents": ".agents/skills",
+  "codex": ".agents/skills",
+  "kilo": ".kilo/skills",
+  "cline": ".cline/skills",
+  "cursor": ".cursor/skills",
+  "claude": ".claude/skills"
+}

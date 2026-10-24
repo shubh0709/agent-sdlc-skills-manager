@@ -1,0 +1,27 @@
+{
+  "stage": "ticket",
+  "skills": [
+    "addy-osmani/doubt-driven-development",
+    "addy-osmani/idea-refine",
+    "addy-osmani/incremental-implementation",
+    "addy-osmani/interview-me",
+    "addy-osmani/planning-and-task-breakdown",
+    "addy-osmani/shipping-and-launch",
+    "local/ralph-loop",
+    "local/sdlc-orchestrator",
+    "matt-pocock/claude-handoff",
+    "matt-pocock/grill-me",
+    "matt-pocock/grill-with-docs",
+    "matt-pocock/grilling",
+    "matt-pocock/handoff",
+    "matt-pocock/implement",
+    "matt-pocock/implement-spec",
+    "matt-pocock/setup-matt-pocock-skills",
+    "matt-pocock/to-tickets",
+    "matt-pocock/triage",
+    "matt-pocock/wayfinder",
+    "pstack/principle-guard-the-context-window",
+    "pstack/principle-outcome-oriented-execution",
+    "pstack/teach"
+  ]
+}

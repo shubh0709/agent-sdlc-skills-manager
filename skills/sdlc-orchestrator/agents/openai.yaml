@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDLC Orchestrator"
+  short_description: "Route features through clarification, TDD, review, and proof"
+  default_prompt: "Guide this task through the SDLC loop and activate only the skills needed for the current stage."
