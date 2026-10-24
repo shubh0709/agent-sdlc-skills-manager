@@ -1,51 +1,92 @@
 ---
 name: ralph-loop
-description: Run a bounded autonomous implementation loop over an already reviewed specification and ordered ticket set. Use only when the user explicitly asks for a Ralph loop, autonomous ticket execution, or repeated implement-test-review-commit cycles. Require explicit iteration or time bounds, persist structured run state, use the SDLC orchestrator inside each ticket, and stop at ambiguity, safety, approval, or repeated-failure gates.
+description: Run or resume a bounded fresh-context agent loop over an already reviewed specification and ordered ticket set. Use when the user asks for a Ralph loop, autonomous ticket execution, repeated implement-test-review-commit cycles, or a resumable long-running coding workflow. Reuse the SDLC orchestrator for each ticket, enforce one ticket per agent invocation, persist state and evidence, honor live steering, and stop on completion, decisions, blockers, repeated failures, unsafe actions, or exhausted iteration/time budgets.
 ---
 
 # Ralph Loop
 
-Do not start from a vague feature request. Require a reviewed specification,
-acceptance criteria, ordered tickets, an understood working tree, verification
-commands, and an explicit iteration or time budget.
+Reuse `sdlc-orchestrator`; do not reproduce its clarification, specification,
+TDD, review, browser-testing, or verification instructions. Ralph controls
+repetition, isolation, state, and stop conditions.
 
-## Initialize
+## Choose the operating mode
 
-1. Read the `sdlc-orchestrator` skill.
-2. Create or resume `.sdlc/run-state.json`.
-3. Confirm the next ticket is unblocked and fits one reviewable vertical slice.
-4. Record the loop budget and current commit.
+- **Editor/manual mode:** Use when Kilo, Cursor, Cline, or another editor has no
+  usable agent CLI. Run `scripts/ralph.py prompt --project <repo>`, give the
+  generated one-ticket prompt to the editor agent, then repeat after it stops.
+- **Automated CLI mode:** Use when an agent CLI can accept a prompt in a new
+  process. Configure `agent_command` and run `scripts/ralph.py run`.
+- **Sandbox mode:** Put the configured command behind the user's chosen
+  container or sandbox. Do not require one sandbox product.
 
-## Iterate
+Read `references/control-files.md` before initializing or repairing a run.
 
-For one ticket at a time:
+## Prepare
 
-1. Restate its observable outcome and proof.
-2. Add one failing behavioral test; confirm the expected red state.
-3. Implement the minimum change; reach green.
-4. Refactor and run the relevant surrounding tests.
-5. Exercise the runtime or browser when applicable.
-6. Review the diff and blast radius.
-7. Verify acceptance evidence.
-8. Update run state and commit atomically when authorized.
-9. Select the next unblocked ticket only if budget remains.
+1. Finish clarification, specification, and ticket review first.
+2. Run `scripts/ralph.py init --project <repo>` once. It never overwrites
+   existing control files.
+3. Populate `.sdlc/tickets.json` with small, ordered, independently verifiable
+   tickets and explicit dependencies.
+4. Configure an agent command only for automated mode. Prefer an argument array
+   and the `{prompt}` or `{prompt_file}` placeholder; never store credentials.
+5. Set explicit iteration and time budgets. Leave `allow_commit` false unless
+   the user has authorized per-ticket commits.
+6. Start from a clean tree, or explicitly acknowledge existing changes with
+   `--allow-dirty`.
 
-Never bypass a failing test, weaken a quality gate, delete coverage merely to
-reach green, or silently broaden scope.
+## Enforce one-ticket iterations
 
-## Stop immediately
+For each fresh invocation:
 
-Stop and report the exact state when any condition holds:
+1. Read live steering instructions first.
+2. Select the highest-priority incomplete ticket whose dependencies are done.
+3. Execute that ticket through the SDLC implementation, test, review, and
+   verification stages.
+4. Require observable verification evidence in the ticket record.
+5. Mark exactly that ticket done. Commit atomically only when authorized.
+6. Emit exactly one terminal signal and stop:
 
-- the same failure occurs three times without new evidence;
-- no trustworthy failing reproduction can be produced;
-- requirements or acceptance criteria conflict;
-- an action is destructive, irreversible, or production-affecting;
-- credentials, external approval, or a product decision are required;
+```text
+<promise>TICKET-ID:DONE</promise>
+<promise>STEERING:DONE</promise>
+<promise>COMPLETE</promise>
+<promise>BLOCKED:reason</promise>
+<promise>DECIDE:question</promise>
+```
+
+Treat a promise as a claim, not proof. The controller must confirm that a
+completed ticket is marked done and contains evidence. Accept `COMPLETE` only
+when every ticket passes that check.
+
+## Preserve observability
+
+Keep structured truth in `.sdlc/run-state.json` and `.sdlc/tickets.json`. Keep
+human-readable summaries in `.sdlc/ralph/log.md` and raw iteration output in
+`.sdlc/ralph/history/`. A fresh agent should need the current ticket, relevant
+specification, steering, and recent state—not the entire historical transcript.
+
+## Stop instead of thrashing
+
+Stop and preserve `next_action` when:
+
+- the same failure repeats without new evidence;
+- the agent returns a blocker or decision signal;
+- no ticket is ready because dependencies are blocked or cyclic;
+- no trustworthy failing reproduction or verification can be produced;
+- requirements conflict or scope must change;
+- credentials, external approval, destructive work, or production access are
+  required;
 - unrelated working-tree changes make the next edit unsafe;
-- a test is persistently flaky;
-- the next ticket is blocked;
-- the iteration or time budget is exhausted.
+- tests remain flaky;
+- the iteration, time, or per-iteration timeout budget is exhausted.
 
-On stop, preserve evidence and write `next_action`; do not claim completion.
+Never weaken tests, quality gates, or acceptance criteria to keep the loop
+moving. Never push automatically.
+
+## Clean up
+
+Terminate the current child process on timeout or interruption, retain history,
+write the exact stop reason, and leave the repository resumable. Disable Ralph
+only if the user deliberately removes it from their core profile.
 

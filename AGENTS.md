@@ -16,6 +16,8 @@ Use vertical slices: one failing behavioral test, minimal implementation, green,
 refactor, focused lower-level tests, runtime/E2E evidence, review, and acceptance
 verification. Do not write a speculative full test pyramid before implementation.
 
-Never run the Ralph loop without reviewed tickets, explicit bounds, a clean or
+Run the Ralph loop only with reviewed tickets, explicit bounds, a clean or
 understood working tree, and the stop conditions in the `ralph-loop` skill.
+Ralph is the execution controller; reuse the SDLC skills rather than copying
+their requirements, TDD, review, browser, or verification logic.
 

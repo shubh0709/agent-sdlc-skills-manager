@@ -8,8 +8,7 @@ an editor-visible directory.
 
 - `catalog/` contains the full upstream catalog and is not an editor discovery path.
 - `skills/` contains original orchestration skills maintained in this repository.
-- `profiles/core.json` selects 17 upstream skills plus `sdlc-orchestrator`.
-- `ralph-loop` is deliberately opt-in.
+- `profiles/core.json` selects 17 upstream skills plus `sdlc-orchestrator` and `ralph-loop`.
 - `scripts/skillctl.py` materializes only selected skills into a project.
 - `registry/skills.json` is compact routing metadata; agents search it before enabling an optional skill.
 
@@ -20,10 +19,10 @@ eligible for discovery, and compatible editors progressively load their bodies.
 ## Quick start
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/shubh0709/agent-sdlc-skills-manager.git
 cd agent-sdlc-skills
 
-# Preview the 18-skill core installation
+# Preview the 19-skill core installation
 python scripts/skillctl.py apply core --editor agents --project /path/to/project --dry-run
 
 # Install it to /path/to/project/.agents/skills
@@ -61,16 +60,33 @@ does not load every alternative merely because it exists.
 
 ## Ralph loop
 
-Ralph is not part of the core profile. Enable it explicitly after a reviewed
+Ralph is the 19th core skill. Initialize its control files only after a reviewed
 specification and ticket set exist:
 
 ```bash
-python scripts/skillctl.py enable local/ralph-loop --editor agents --project /path/to/project
+python /path/to/project/.agents/skills/ralph-loop/scripts/ralph.py init \
+  --project /path/to/project
 ```
 
-It runs bounded ticket-sized iterations and stops on ambiguity, repeated
-failure, unsafe operations, missing credentials, persistent flakes, or a human
-approval boundary.
+For editors without an agent CLI, generate the next one-ticket prompt and run it
+in the editor:
+
+```bash
+python /path/to/project/.agents/skills/ralph-loop/scripts/ralph.py prompt \
+  --project /path/to/project
+```
+
+For CLI-capable agents, configure an argument-vector command in
+`.sdlc/ralph/config.json` and run bounded fresh-context iterations. Ralph reuses
+the SDLC orchestrator and the existing TDD, review, browser-testing and
+verification skills instead of carrying duplicate implementations.
+
+```bash
+python /path/to/project/.agents/skills/ralph-loop/scripts/ralph.py run \
+  --project /path/to/project \
+  --max-iterations 10 \
+  --max-minutes 120
+```
 
 ## Updating the catalog
 

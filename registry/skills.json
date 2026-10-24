@@ -341,16 +341,17 @@
       "id": "local/ralph-loop",
       "name": "ralph-loop",
       "source": "local",
-      "description": "Run a bounded autonomous implementation loop over an already reviewed specification and ordered ticket set. Use only when the user explicitly asks for a Ralph loop, autonomous ticket execution, or repeated implement-test-review-commit cycles. Require explicit iteration or time bounds, persist structured run state, use the SDLC orchestrator inside each ticket, and stop at ambiguity, safety, approval, or repeated-failure gates.",
+      "description": "Run or resume a bounded fresh-context agent loop over an already reviewed specification and ordered ticket set. Use when the user asks for a Ralph loop, autonomous ticket execution, repeated implement-test-review-commit cycles, or a resumable long-running coding workflow. Reuse the SDLC orchestrator for each ticket, enforce one ticket per agent invocation, persist state and evidence, honor live steering, and stop on completion, decisions, blockers, repeated failures, unsafe actions, or exhausted iteration/time budgets.",
       "stages": [
         "specify",
         "ticket",
         "implement",
         "test",
-        "review"
+        "review",
+        "verify"
       ],
       "path": "skills/ralph-loop",
-      "core": false
+      "core": true
     },
     {
       "id": "local/sdlc-orchestrator",

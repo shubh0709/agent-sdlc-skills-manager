@@ -28,13 +28,14 @@ class SkillCtlTest(unittest.TestCase):
         self.assertEqual(121, len(upstream))
         self.assertEqual({"sdlc-orchestrator", "ralph-loop"}, {row["name"] for row in local})
 
-    def test_core_materializes_18_skills_and_reset_removes_optional(self) -> None:
+    def test_core_materializes_19_skills_and_reset_removes_optional(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             project = Path(temp)
             first = self.run_cli("apply", "core", "--project", str(project))
             self.assertEqual(0, first.returncode, first.stderr)
             skill_dir = project / ".agents" / "skills"
-            self.assertEqual(18, len(list(skill_dir.glob("*/SKILL.md"))))
+            self.assertEqual(19, len(list(skill_dir.glob("*/SKILL.md"))))
+            self.assertTrue((skill_dir / "ralph-loop" / "scripts" / "ralph.py").is_file())
 
             enabled = self.run_cli(
                 "enable",
