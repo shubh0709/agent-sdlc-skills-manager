@@ -1,0 +1,13 @@
+Dual-use content disclosure
+
+This package includes Cloudflare's defensive security-audit agent skill. It can
+guide source-code vulnerability review, security research, and locally scoped
+penetration testing. The skill is included to help software owners identify,
+validate, report, and remediate vulnerabilities in systems they are authorized
+to assess.
+
+The skill explicitly limits execution to authorized, isolated, local targets;
+forbids probing production or third-party systems; requires safe fixtures and
+sandbox controls; and separates unverified candidates from confirmed findings.
+The package is not intended to deploy malware, obtain unauthorized access,
+exfiltrate data, disrupt services, or evade security controls.

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+scripts/__pycache__/
+skills/ralph-loop/scripts/__pycache__/
+tests/
+.sdlc/
+.agent-skills-state.json

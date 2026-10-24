@@ -1,8 +1,9 @@
 {
-  "description": "The 17 curated defaults plus the SDLC orchestrator and Ralph loop.",
+  "description": "The 17 curated defaults plus the SDLC orchestrator, Ralph loop, and Cloudflare security audit gate.",
   "skills": [
     "local/sdlc-orchestrator",
     "local/ralph-loop",
+    "cloudflare/security-audit",
     "matt-pocock/grilling",
     "matt-pocock/grill-with-docs",
     "matt-pocock/domain-modeling",

@@ -1,0 +1,56 @@
+{
+  "name": "agent-sdlc-skills-manager",
+  "version": "0.1.0",
+  "description": "Curated, on-demand agent skills for a plan-first, TDD, security-aware SDLC loop.",
+  "type": "module",
+  "bin": {
+    "agent-sdlc-skills-manager": "bin/agent-sdlc-skills-manager.mjs"
+  },
+  "files": [
+    "bin",
+    "catalog",
+    "profiles",
+    "registry",
+    "scripts",
+    "skills",
+    "third_party",
+    "!**/__pycache__/**",
+    "!**/*.pyc",
+    "DISCLOSURE",
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY.md"
+  ],
+  "scripts": {
+    "test": "python3 scripts/rebuild_registry.py && python3 scripts/skillctl.py doctor && python3 -m unittest discover -s tests -v && node --test catalog/cloudflare/security-audit/*.test.cjs",
+    "prepack": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubh0709/agent-sdlc-skills-manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shubh0709/agent-sdlc-skills-manager/issues"
+  },
+  "homepage": "https://github.com/shubh0709/agent-sdlc-skills-manager#readme",
+  "keywords": [
+    "agent-skills",
+    "sdlc",
+    "tdd",
+    "ralph-loop",
+    "coding-agents",
+    "vscode"
+  ],
+  "author": "Shubham",
+  "license": "MIT",
+  "contentPolicy": {
+    "class": "dual-use"
+  },
+  "engines": {
+    "node": ">=18",
+    "python": ">=3.10"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

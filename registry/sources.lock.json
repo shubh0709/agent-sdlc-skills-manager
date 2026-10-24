@@ -4,13 +4,23 @@
       "id": "addy-osmani",
       "repository": "https://github.com/addyosmani/agent-skills",
       "commit": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+      "branch": "main",
+      "skill_root": "skills",
+      "target": "catalog/addy-osmani",
+      "sync_mode": "vendored",
+      "license_source": "LICENSE",
       "license": "MIT",
       "license_file": "third_party/LICENSE.addy-osmani"
     },
     {
       "id": "pstack",
-      "repository": "https://github.com/cursor/plugins/tree/main/pstack",
+      "repository": "https://github.com/cursor/plugins",
       "commit": "9580c23696ac8d7abed0c166f2f9918800afb819",
+      "branch": "main",
+      "skill_root": "pstack/skills",
+      "target": "catalog/pstack",
+      "sync_mode": "vendored",
+      "license_source": "pstack/LICENSE",
       "license": "MIT",
       "license_file": "third_party/LICENSE.pstack"
     },
@@ -18,6 +28,11 @@
       "id": "matt-pocock",
       "repository": "https://github.com/mattpocock/skills",
       "commit": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+      "branch": "main",
+      "skill_root": "skills",
+      "target": "catalog/matt-pocock",
+      "sync_mode": "vendored",
+      "license_source": "LICENSE",
       "license": "MIT",
       "license_file": "third_party/LICENSE.matt-pocock"
     },
@@ -25,9 +40,24 @@
       "id": "pageai-ralph-loop",
       "repository": "https://github.com/PageAI-Pro/ralph-loop",
       "commit": "eba65ebbb0a78c4a7fd25aab28e94966eddbca5b",
+      "branch": "main",
+      "sync_mode": "reference",
+      "license_source": "LICENSE",
       "license": "MIT",
       "license_file": "third_party/LICENSE.pageai-ralph-loop",
       "usage": "Design reference for the integrated local/ralph-loop runner; bundled skills were not copied."
+    },
+    {
+      "id": "cloudflare",
+      "repository": "https://github.com/cloudflare/security-audit-skill",
+      "commit": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "branch": "main",
+      "skill_root": "skills",
+      "target": "catalog/cloudflare",
+      "sync_mode": "vendored",
+      "license_source": "LICENSE",
+      "license": "MIT",
+      "license_file": "third_party/LICENSE.cloudflare-security-audit"
     }
   ]
 }

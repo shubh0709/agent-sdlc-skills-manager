@@ -1,28 +1,44 @@
 # agent-sdlc-skills
 
 A curated, cross-editor software-delivery skill catalog. The repository vendors
-121 MIT-licensed upstream skills, but installs only a small default profile into
+122 MIT-licensed upstream skills, but installs only a small default profile into
 an editor-visible directory.
 
 ## The model
 
 - `catalog/` contains the full upstream catalog and is not an editor discovery path.
 - `skills/` contains original orchestration skills maintained in this repository.
-- `profiles/core.json` selects 17 upstream skills plus `sdlc-orchestrator` and `ralph-loop`.
+- `profiles/core.json` selects 18 upstream skills plus `sdlc-orchestrator` and `ralph-loop`.
 - `scripts/skillctl.py` materializes only selected skills into a project.
 - `registry/skills.json` is compact routing metadata; agents search it before enabling an optional skill.
 
-Keeping 121 skills in this Git repository does not put all 121 skill bodies into
+Keeping 122 skills in this Git repository does not put all 122 skill bodies into
 model context. Only skills copied into the editor's discovery directory are
 eligible for discovery, and compatible editors progressively load their bodies.
 
 ## Quick start
 
+Python 3.10+ is required. The shortest installation path is the npm package;
+`npx` downloads the catalog temporarily and the CLI copies only the selected
+profile into your project:
+
+```bash
+# Preview, then install the 20-skill core into the current project
+npx agent-sdlc-skills-manager apply core --editor agents --project . --dry-run
+npx agent-sdlc-skills-manager apply core --editor agents --project .
+
+# Search and selectively enable one optional skill
+npx agent-sdlc-skills-manager search security
+npx agent-sdlc-skills-manager enable addy-osmani/security-and-hardening --editor agents --project .
+```
+
+To run from source instead:
+
 ```bash
 git clone https://github.com/shubh0709/agent-sdlc-skills-manager.git
-cd agent-sdlc-skills
+cd agent-sdlc-skills-manager
 
-# Preview the 19-skill core installation
+# Preview the 20-skill core installation
 python scripts/skillctl.py apply core --editor agents --project /path/to/project --dry-run
 
 # Install it to /path/to/project/.agents/skills
@@ -52,15 +68,17 @@ layout supported by Kilo Code and Codex.
 5. Deliver one vertical slice with red-green-refactor TDD.
 6. Exercise the real runtime and browser where applicable.
 7. Review quality and inspect the blast radius.
-8. Verify acceptance criteria with reproducible evidence.
-9. Commit an atomic change and continue with the next ticket.
+8. Run the focused Cloudflare security gate when the change touches a trust boundary.
+9. Verify acceptance criteria with reproducible evidence.
+10. Commit an atomic change and continue with the next ticket.
 
 The orchestrator chooses the smallest applicable skill set at each stage. It
 does not load every alternative merely because it exists.
 
 ## Ralph loop
 
-Ralph is the 19th core skill. Initialize its control files only after a reviewed
+Ralph remains the 19th skill in the original sequence; Cloudflare's security
+audit is the 20th core skill. Initialize Ralph's control files only after a reviewed
 specification and ticket set exist:
 
 ```bash
@@ -90,9 +108,27 @@ python /path/to/project/.agents/skills/ralph-loop/scripts/ralph.py run \
 
 ## Updating the catalog
 
-Each vendored collection retains its original MIT license in `third_party/`.
-Pinned source commits live in `registry/sources.lock.json`. After intentionally
-updating the vendored content, rebuild routing metadata and run validation:
+Each upstream URL, branch, layout, license, and pinned commit lives in
+`registry/sources.lock.json`. Check for upstream changes without modifying the
+working tree:
+
+```bash
+python scripts/sync_upstreams.py check
+python scripts/sync_upstreams.py check --source cloudflare
+```
+
+Refresh one collection at a time. The command clones into a temporary directory,
+validates skill frontmatter, replaces only that source's catalog directory,
+copies its license, updates the pin, and rebuilds the registry. It never runs
+newly imported upstream executables, commits, or publishes:
+
+```bash
+python scripts/sync_upstreams.py apply --source cloudflare
+git diff --stat
+git diff
+```
+
+After reviewing an update, run validation:
 
 ```bash
 python scripts/rebuild_registry.py
@@ -102,3 +138,37 @@ python -m unittest discover -s tests -v
 
 Do not auto-execute newly imported scripts. Review provenance, license, skill
 instructions, and bundled executables before adding a skill to a profile.
+
+## Credits and licensing
+
+This repository is a curated distribution. The original creators are credited
+in [THIRD_PARTY.md](THIRD_PARTY.md), every vendored source is pinned, and every
+MIT notice is shipped in `third_party/`. The root MIT license applies to this
+repository's original installer and orchestration work; upstream copyrights
+remain with their authors.
+
+MIT licensing permits redistribution and publication when its copyright and
+permission notice are preserved. That is why the npm tarball explicitly includes
+`third_party/` and `THIRD_PARTY.md`. This is practical licensing hygiene, not
+legal advice; do not import a future source whose license is missing or
+incompatible.
+
+Because the catalog includes defensive penetration-testing guidance, the npm
+package declares `contentPolicy.class = "dual-use"` and ships the required
+`DISCLOSURE` file. The security skill is for authorized, isolated assessment.
+
+## Publishing to npm
+
+The package is configured as the public unscoped package
+`agent-sdlc-skills-manager`. Before each release:
+
+```bash
+npm test
+npm pack --dry-run
+npm publish
+```
+
+Publishing this dual-use package requires interactive 2FA. Alternatively, use
+`npm stage publish` and approve the staged release with 2FA. Do not directly
+publish it using a bypass-2FA token or trusted-publishing workflow; npm permits
+those methods for dual-use packages only through staged publishing.

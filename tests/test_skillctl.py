@@ -21,21 +21,26 @@ class SkillCtlTest(unittest.TestCase):
             check=False,
         )
 
-    def test_registry_has_121_upstream_and_two_local_skills(self) -> None:
+    def test_registry_has_expected_sources_and_two_local_skills(self) -> None:
         data = json.loads((ROOT / "registry" / "skills.json").read_text())
         upstream = [row for row in data["skills"] if row["source"] != "local"]
         local = [row for row in data["skills"] if row["source"] == "local"]
-        self.assertEqual(121, len(upstream))
+        self.assertGreaterEqual(len(upstream), 122)
+        self.assertTrue(
+            {"addy-osmani", "pstack", "matt-pocock", "cloudflare"}
+            <= {row["source"] for row in upstream}
+        )
         self.assertEqual({"sdlc-orchestrator", "ralph-loop"}, {row["name"] for row in local})
 
-    def test_core_materializes_19_skills_and_reset_removes_optional(self) -> None:
+    def test_core_materializes_20_skills_and_reset_removes_optional(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             project = Path(temp)
             first = self.run_cli("apply", "core", "--project", str(project))
             self.assertEqual(0, first.returncode, first.stderr)
             skill_dir = project / ".agents" / "skills"
-            self.assertEqual(19, len(list(skill_dir.glob("*/SKILL.md"))))
+            self.assertEqual(20, len(list(skill_dir.glob("*/SKILL.md"))))
             self.assertTrue((skill_dir / "ralph-loop" / "scripts" / "ralph.py").is_file())
+            self.assertTrue((skill_dir / "security-audit" / "validate-findings.cjs").is_file())
 
             enabled = self.run_cli(
                 "enable",

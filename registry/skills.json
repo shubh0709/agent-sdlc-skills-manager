@@ -338,6 +338,20 @@
       "core": false
     },
     {
+      "id": "cloudflare/security-audit",
+      "name": "security-audit",
+      "source": "cloudflare",
+      "description": "Security guidance and vulnerability review for codebases, APIs, services, CLI tools, libraries, and daemons. Use for security questions, focused reviews, vulnerability research, security audits, or pen tests. Run the complete workflow only for explicit codebase audit or pen-test requests, full/comprehensive/end-to-end reviews, or requested report artifacts.",
+      "stages": [
+        "design",
+        "implement",
+        "test",
+        "review"
+      ],
+      "path": "catalog/cloudflare/security-audit",
+      "core": true
+    },
+    {
       "id": "local/ralph-loop",
       "name": "ralph-loop",
       "source": "local",
@@ -357,7 +371,7 @@
       "id": "local/sdlc-orchestrator",
       "name": "sdlc-orchestrator",
       "source": "local",
-      "description": "Orchestrate a complete software-delivery lifecycle from requirements interview through specification, tickets, vertical-slice TDD, implementation, review, runtime testing, and evidence-backed verification. Use for new features, substantial changes, or multi-ticket fixes when the user wants a plan-first workflow, asks to be grilled, requests test-driven development, or wants work shipped through a repeatable SDLC loop. Route to the smallest relevant supporting skill set and discover optional catalog skills only when the core set has a concrete gap.",
+      "description": "Orchestrate a complete software-delivery lifecycle from requirements interview through specification, tickets, vertical-slice TDD, implementation, review, security audit, runtime testing, and evidence-backed verification. Use for new features, substantial changes, or multi-ticket fixes when the user wants a plan-first workflow, asks to be grilled, requests test-driven development, or wants work shipped through a repeatable SDLC loop. Route to the smallest relevant supporting skill set and discover optional catalog skills only when the core set has a concrete gap.",
       "stages": [
         "clarify",
         "specify",

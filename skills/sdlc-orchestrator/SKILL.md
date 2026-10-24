@@ -1,6 +1,6 @@
 ---
 name: sdlc-orchestrator
-description: Orchestrate a complete software-delivery lifecycle from requirements interview through specification, tickets, vertical-slice TDD, implementation, review, runtime testing, and evidence-backed verification. Use for new features, substantial changes, or multi-ticket fixes when the user wants a plan-first workflow, asks to be grilled, requests test-driven development, or wants work shipped through a repeatable SDLC loop. Route to the smallest relevant supporting skill set and discover optional catalog skills only when the core set has a concrete gap.
+description: Orchestrate a complete software-delivery lifecycle from requirements interview through specification, tickets, vertical-slice TDD, implementation, review, security audit, runtime testing, and evidence-backed verification. Use for new features, substantial changes, or multi-ticket fixes when the user wants a plan-first workflow, asks to be grilled, requests test-driven development, or wants work shipped through a repeatable SDLC loop. Route to the smallest relevant supporting skill set and discover optional catalog skills only when the core set has a concrete gap.
 ---
 
 # SDLC Orchestrator
@@ -73,14 +73,27 @@ Use `code-review-and-quality` and `blast-radius`. Review correctness, security,
 maintainability, accessibility, performance, compatibility, tests, and the
 actual diff. Resolve material findings or record an explicit disposition.
 
-### 8. Verify
+### 8. Security gate
+
+Use `security-audit` in focused guidance mode when a change crosses a trust
+boundary, handles authentication, authorization, secrets, untrusted input,
+tenant data, local IPC, external services, deployment configuration, or supply
+chain/release machinery. Use its full audit mode only when the user explicitly
+requests a complete audit or report. Do not also load `security-and-hardening`
+unless its application-hardening checklist fills a named gap.
+
+Resolve confirmed findings before release or document the owner, risk decision,
+and follow-up ticket. Never run target-controlled security probes without the
+sandbox controls required by the skill.
+
+### 9. Verify
 
 Use `create-verification-skill` when the project lacks a stable verifier. Apply
 `principle-prove-it-works`: map each acceptance criterion to reproducible
 evidence. Report commands, results, runtime observations, and remaining risks.
 Do not equate compilation or a green unit suite with feature completion.
 
-### 9. Close
+### 10. Close
 
 Update tickets and run state. Commit an atomic coherent change when authorized.
 For production release work, search the optional catalog for shipping,

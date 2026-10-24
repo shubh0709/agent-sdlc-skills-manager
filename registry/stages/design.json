@@ -5,6 +5,7 @@
     "addy-osmani/deprecation-and-migration",
     "addy-osmani/documentation-and-adrs",
     "addy-osmani/frontend-ui-engineering",
+    "cloudflare/security-audit",
     "matt-pocock/codebase-design",
     "matt-pocock/domain-modeling",
     "matt-pocock/grill-me",
