@@ -48,6 +48,15 @@ class WorklogTest(unittest.TestCase):
             self.assertIn("supersedes", page)
             self.assertIn("Chosen approach", (project / ".worklog" / "work-log.md").read_text())
             self.assertIn("Design choices", (project / ".worklog" / "hld.md").read_text())
+            mermaid = project / "flow.md"
+            mermaid.write_text("```mermaid\\nflowchart TD\\nA[Client] --> B[API]\\n```\\n")
+            flow = self.run_cli(project, "record", "--section", "hld", "--title", "Data flow",
+                                "--body-file", str(mermaid), "--status", "discussed")
+            self.assertEqual(flow.returncode, 0, flow.stderr)
+            self.assertEqual(self.run_cli(project, "render").returncode, 0)
+            page = (project / ".worklog" / "index.html").read_text()
+            self.assertIn("Offline flowchart", page)
+            self.assertIn("<svg", page)
 
     def test_invalid_supersession_does_not_write(self):
         with tempfile.TemporaryDirectory() as tmp:

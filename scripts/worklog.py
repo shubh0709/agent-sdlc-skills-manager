@@ -97,6 +97,48 @@ def projections(folder: Path, events: list[dict]) -> None:
     # The overall chronology includes all events, not only progress events.
     atomic_text(folder / "work-log.md", markdown_entries(events, "progress"))
 
+def simple_mermaid_svg(source: str) -> str | None:
+    """Render basic Mermaid flowcharts offline. Keep source visible for unsupported syntax."""
+    lines = [line.strip() for line in source.splitlines() if line.strip()]
+    if not lines or not re.fullmatch(r"(?:flowchart|graph)\s+(?:TD|TB|LR)", lines[0]):
+        return None
+    node_pat = r"([A-Za-z][\w-]*)(?:\[([^\]\n]+)\])?"
+    edge_pat = re.compile("^" + node_pat + r"\s*-->\s*" + node_pat + "$")
+    nodes = {}
+    edges = []
+    for line in lines[1:]:
+        m = edge_pat.fullmatch(line)
+        if m is None:
+            return None
+        start, start_name, end, end_name = m.groups()
+        nodes.setdefault(start, start_name or start)
+        nodes.setdefault(end, end_name or end)
+        if start_name:
+            nodes[start] = start_name
+        if end_name:
+            nodes[end] = end_name
+        edges.append((start, end))
+    if not nodes or len(nodes) > 24:
+        return None
+    positions = {key: 20 + i * 88 for i, key in enumerate(nodes)}
+    height = len(nodes) * 88 + 30
+    parts = ['<svg role="img" aria-label="Project flowchart" viewBox="0 0 560 ' +
+             str(height) + '" xmlns="http://www.w3.org/2000/svg">']
+    for start, end in edges:
+        parts.append('<path d="M 280 ' + str(positions[start] + 62) +
+                     ' L 280 ' + str(positions[end] - 4) +
+                     '" stroke="#475569" stroke-width="2" fill="none"/>')
+    for key, label in nodes.items():
+        y = positions[key]
+        parts.append('<rect x="28" y="' + str(y) +
+                     '" width="504" height="60" rx="10" fill="#e2e8f0" stroke="#64748b"/>')
+        parts.append('<text x="280" y="' + str(y + 35) +
+                     '" text-anchor="middle" font-family="system-ui" font-size="15" fill="#0f172a">' +
+                     html.escape(label[:85]) + '</text>')
+    parts.append('</svg>')
+    return "\n".join(parts)
+
+
 def body_html(text: str) -> str:
     """Conservative Markdown subset. Never interpret user HTML or JavaScript."""
     output, paragraph = [], []
@@ -112,6 +154,10 @@ def body_html(text: str) -> str:
             if fence:
                 content = html.escape("\n".join(code))
                 output.append('<pre><code class="language-' + html.escape(lang, quote=True) + '">' + content + "</code></pre>")
+                if lang == "mermaid":
+                    diagram = simple_mermaid_svg("\n".join(code))
+                    if diagram:
+                        output.append('<figure class="diagram">' + diagram + '<figcaption>Offline flowchart (simple Mermaid subset)</figcaption></figure>')
                 code, fence = [], False
             else:
                 lang = re.sub(r"[^a-zA-Z0-9_-]", "", line.strip()[3:].strip())[:32]
