@@ -106,6 +106,11 @@ def install_one(skill_id: str, dest: Path, state: dict, dry_run: bool) -> None:
         if target.exists():
             shutil.rmtree(target)
         shutil.copytree(source, target)
+        # Inject the local work-log protocol into every managed skill, including vendored ones.
+        skill_md = target / "SKILL.md"
+        protocol = (ROOT / "skills" / "sdlc-orchestrator" / "references" / "worklog-protocol.md").read_text(encoding="utf-8")
+        with skill_md.open("a", encoding="utf-8") as out:
+            out.write("\n" + protocol)
         (target / MARKER_FILE).write_text(
             json.dumps({"id": row["id"], "source_path": row["path"]}, indent=2) + "\n",
             encoding="utf-8",

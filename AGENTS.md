@@ -21,3 +21,7 @@ understood working tree, and the stop conditions in the `ralph-loop` skill.
 Ralph is the execution controller; reuse the SDLC skills rather than copying
 their requirements, TDD, review, browser, or verification logic.
 
+
+## Project work logs
+
+Treat `.worklog/` in each consuming project as the shared source for questions, design rationale and approved decisions. Use `python3 scripts/worklog.py` or `npx agent-sdlc-skills-manager worklog` for append-only records; regenerate static HTML with `worklog render`. Read previous decisions before changing an HLD or LLD; preserve and supersede old entries. No sensitive information in logs.

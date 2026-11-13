@@ -125,3 +125,6 @@ After clarifying the problem, explicitly ask whether the user wants to discuss H
 **Only after the HLD discussion is complete**, separately ask whether the user wants to discuss LLD. If accepted, explore APIs, data models, modules, interfaces, error handling, testing and rollout alternatives, then obtain explicit LLD approval.
 
 If either discussion is declined, record that decision without implying design approval. **Never start application code changes or delegate implementation until the user explicitly approves the implementation path after both sequential HLD and LLD checkpoints.** Planning documentation can be written when requested. Keep depth proportionate for trivial tasks.
+
+
+Read and follow the shared work-log protocol in `skills/sdlc-orchestrator/references/worklog-protocol.md`. All Q&A, HLD, LLD, and subsequent design changes must be recorded before implementation. The installer also adds this protocol to the installed skill copy.

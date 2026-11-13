@@ -5,7 +5,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const script = resolve(root, "scripts", "skillctl.py");
+const script = resolve(root, "scripts", process.argv[2] === "worklog" ? "worklog.py" : "skillctl.py");
 const configured = process.env.AGENT_SDLC_PYTHON;
 const candidates = configured
   ? [{ command: configured, prefix: [] }]
@@ -33,7 +33,7 @@ if (!selected) {
 
 const result = spawnSync(
   selected.command,
-  [...selected.prefix, script, ...process.argv.slice(2)],
+  [...selected.prefix, script, ...process.argv.slice(process.argv[2] === "worklog" ? 3 : 2)],
   { cwd: process.cwd(), stdio: "inherit" },
 );
 if (result.error) {

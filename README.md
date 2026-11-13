@@ -172,3 +172,32 @@ Publishing this dual-use package requires interactive 2FA. Alternatively, use
 `npm stage publish` and approve the staged release with 2FA. Do not directly
 publish it using a bypass-2FA token or trusted-publishing workflow; npm permits
 those methods for dual-use packages only through staged publishing.
+
+## Persistent project work log
+
+Every installed skill receives a shared work-log protocol. By default logs are stored
+inside the consuming project (not this catalog), under `.worklog/`. Each call to
+`record` writes a separate immutable JSON event and refreshes `context.md`,
+`questions.md`, `hld.md`, `lld.md`, `decisions.md`, and `work-log.md`.
+The HTML export is fully offline with no network scripts; embedded Mermaid source
+is escaped and shown as code (the built-in pipeline overview is SVG).
+
+```bash
+npx agent-sdlc-skills-manager worklog --project . init
+npx agent-sdlc-skills-manager worklog --project . record \\
+  --section questions --title "How do we process uploads?" \\
+  --body "Compared async jobs vs synchronous requests; async is proposed." \\
+  --status proposed
+npx agent-sdlc-skills-manager worklog --project . render
+# Open .worklog/index.html in a browser
+```
+
+Sections are `context`, `questions`, `hld`, `lld`, `decisions`, and
+`progress`. Use `--body-file` for lengthy multiline content or Mermaid code,
+`--status approved` only for explicit user approval, and `--supersedes ID`
+when revising an earlier decision. Records are append-only: never edit the
+projected Markdown by hand. No automatic extraction from your Codex/Kilo chat;
+participating agents must intentionally call the writer as guided by the skills.
+
+After publishing a new npm release, re-run `apply core` to propagate updated
+skill instructions into previously installed projects.

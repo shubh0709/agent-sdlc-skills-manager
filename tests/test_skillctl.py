@@ -40,6 +40,7 @@ class SkillCtlTest(unittest.TestCase):
             skill_dir = project / ".agents" / "skills"
             self.assertEqual(20, len(list(skill_dir.glob("*/SKILL.md"))))
             self.assertTrue((skill_dir / "ralph-loop" / "scripts" / "ralph.py").is_file())
+            self.assertIn("Shared project work log", (skill_dir / "tdd" / "SKILL.md").read_text())
             self.assertTrue((skill_dir / "security-audit" / "validate-findings.cjs").is_file())
 
             enabled = self.run_cli(
