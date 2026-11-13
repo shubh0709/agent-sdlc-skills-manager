@@ -28,3 +28,11 @@ Each round the user answers reshapes the tree: settled decisions push the fronti
 Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it; don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report; ask the rest of the frontier now. The _decisions_ are the user's: put each to them and wait.
 
 The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
+
+## Mandatory design discussion before implementation
+
+After clarifying the problem, explicitly ask whether the user wants to discuss HLD. For non-trivial work, strongly recommend it. If accepted, propose at least two viable approaches (or explain why only one is feasible), compare architecture, data/request flows, reliability, scalability, complexity, cost and trade-offs, and have an interactive discussion before recommending a path. Record the selected HLD and obtain explicit approval.
+
+**Only after the HLD discussion is complete**, separately ask whether the user wants to discuss LLD. If accepted, explore APIs, data models, modules, interfaces, error handling, testing and rollout alternatives, then obtain explicit LLD approval.
+
+If either discussion is declined, record that decision without implying design approval. **Never start application code changes or delegate implementation until the user explicitly approves the implementation path after both sequential HLD and LLD checkpoints.** Planning documentation can be written when requested. Keep depth proportionate for trivial tasks.
